@@ -66,11 +66,6 @@ app.use("/uploads", express.static("uploads"));
 
 ////////////////////GET////////////////////
 
-app.get("/", (req, res) => {
-  res.json({
-    success: 'ti barra nayek '
-  });
-});
 
 app.get("/api/auth", auth, (req, res) => {
   res.json({
@@ -135,6 +130,14 @@ app.get("/api/getMarques", (req, res) => {
     res.status(200).send(marques);
   });
 });
+
+app.get("/api/getMessages", (req, res) => {
+  Message.find({}, (err, messages) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(messages);
+  });
+});
+
 
 ////////////////////POST////////////////////
 

@@ -3,11 +3,7 @@ import { Form, Message, Container, Segment } from "semantic-ui-react";
 
 import axios from "axios";
 
-const genderOptions = [
-  { key: "m", text: "Male", value: "male" },
-  { key: "f", text: "Femelle", value: "femelle" },
-  { key: "a", text: "Autre", value: "autre" },
-];
+
 
 class ContactForm extends Component {
   state = {
@@ -15,8 +11,7 @@ class ContactForm extends Component {
     contactPrenom: "",
     contactTel: "",
     contactEmail: "",
-    contactMessage:
-      "Bonjour,\n\nJe suis intéressé(e) par cette véhicule. Est-il toujours disponible?\n\nCordialement.",
+    contactMessage: this.props.defaultMessage,
     contactCheck: false,
     prenomEmpty: false,
     nomEmpty: false,
@@ -78,7 +73,7 @@ class ContactForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    
+
 
     if (this.state.contactPrenom === "") {
       this.setState({ prenomEmpty: true });
@@ -203,7 +198,6 @@ class ContactForm extends Component {
             onClick={this.onSubmit}
             color="green"
             style={{ marginBottom: "2em" }}
-            floated="right"
           >
             Envoyer
           </Form.Button>

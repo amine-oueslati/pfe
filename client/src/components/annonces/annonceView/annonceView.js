@@ -331,11 +331,13 @@ class AnnonceView extends Component {
                         <Modal.Content>
                           <Modal.Description>
                             <Header>
-                              Contacter l'administartion à propos de cette
-                              annonce{" "}
+                              Contacter l'administartion à propos de cette annonce
                             </Header>
                             <Container style={{ padding: "1em" }}>
-                              <ContactForm idAnnonce={this.state.annonce._id} />
+                              <ContactForm
+                                defaultMessage={'Bonjour, \n \n Je suis intéressé(e) par cette véhicule. Est-il toujours disponible?\n\nCordialement.'}
+                                idAnnonce={this.state.annonce._id}
+                              />
                             </Container>
                           </Modal.Description>
                         </Modal.Content>
@@ -382,7 +384,10 @@ class AnnonceView extends Component {
                             Contacter l'administartion à propos de cette annonce
                           </Header>
                           <Container style={{ padding: "1em" }}>
-                            <ContactForm idAnnonce={this.state.annonce._id} />
+                            <ContactForm
+                              defaultMessage={'Bonjour, \n \n Je suis intéressé(e) par cette véhicule. Est-il toujours disponible?\n\nCordialement.'}
+                              idAnnonce={this.state.annonce._id}
+                            />
                           </Container>
                         </Modal.Description>
                       </Modal.Content>
