@@ -317,6 +317,16 @@ app.delete("/api/deleteUser", (req, res) => {
   });
 });
 
+app.delete("/api/deleteMessage", (req, res) => {
+  let id = req.body.id;
+
+  Message.findByIdAndRemove(id, (err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.json({ doc: doc });
+  });
+});
+
+
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => {

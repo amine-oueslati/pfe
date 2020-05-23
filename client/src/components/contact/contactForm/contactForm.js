@@ -26,6 +26,7 @@ class ContactForm extends Component {
       nomEmpty: false,
       contactNom: e.target.value,
       formValid: true,
+      msgSubmitted: "default"
     });
   };
 
@@ -34,16 +35,18 @@ class ContactForm extends Component {
       prenomEmpty: false,
       contactPrenom: e.target.value,
       formValid: true,
+      msgSubmitted: "default"
     });
   };
 
   handleTel = (e) => {
     if (e.target.value === "") this.setState({ contactTel: "" });
-    if (Number(e.target.value)) {
+    if (Number(e.target.value) || e.target.value === "0") {
       this.setState({
         telEmpty: false,
         contactTel: e.target.value,
         formValid: true,
+        msgSubmitted: "default"
       });
     }
   };
@@ -53,6 +56,7 @@ class ContactForm extends Component {
       emailEmpty: false,
       contactEmail: e.target.value,
       formValid: true,
+      msgSubmitted: "default"
     });
   };
 
@@ -61,6 +65,7 @@ class ContactForm extends Component {
       msgEmpty: false,
       contactMessage: e.target.value,
       formValid: true,
+      msgSubmitted: "default"
     });
   };
 
@@ -68,6 +73,7 @@ class ContactForm extends Component {
     this.setState((prevState) => ({
       contactCheck: !prevState.contactCheck,
       formValid: true,
+      msgSubmitted: "default"
     }));
   };
 
@@ -95,11 +101,11 @@ class ContactForm extends Component {
     }
 
     if (
+      !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.contactEmail) ||
       this.state.prenomEmpty ||
       this.state.nomEmpty ||
       this.state.telEmpty ||
       this.state.contactTel.length < 8 ||
-      this.state.emailEmpty ||
       this.state.msgEmpty ||
       !this.state.contactCheck
     ) {

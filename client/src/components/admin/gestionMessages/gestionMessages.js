@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 import { Tab } from "semantic-ui-react";
-import Axios from "axios";
+import axios from "axios";
 
 
 import Message from './message/message'
@@ -17,7 +17,7 @@ class GestionMessages extends Component {
 
 
 	componentWillMount = () => {
-		Axios.get("api/getMessages").then(response => {
+		axios.get("api/getMessages").then(response => {
 			response.data.map(message => {
 				if (message.idAnnonce)
 					this.setState({ annonces: [message, ... this.state.annonces] })
@@ -27,6 +27,29 @@ class GestionMessages extends Component {
 		})
 	}
 
+	deleteMsg = (id) => {
+		axios.delete("api/deleteMessage", {
+			data: {
+				id
+			}
+		}).then(response => {
+			console.log(response.data)
+			if (response.data.doc._id) {
+				axios.get("api/getMessages").then(response => {
+					this.setState({
+						reclamations: [],
+						annonces: []
+					})
+					response.data.map(message => {
+						if (message.idAnnonce)
+							this.setState({ annonces: [message, ... this.state.annonces] })
+						else
+							this.setState({ reclamations: [message, ... this.state.reclamations] })
+					})
+				})
+			}
+		})
+	}
 
 
 	render() {
@@ -35,7 +58,7 @@ class GestionMessages extends Component {
 				menuItem: "Concernant une annonce",
 				render: () => (
 					<Tab.Pane>
-						<Message messages = {this.state.annonces}/>
+						<Message deleteMsg={this.deleteMsg} messages={this.state.annonces} />
 					</Tab.Pane>
 				),
 			},
@@ -43,7 +66,7 @@ class GestionMessages extends Component {
 				menuItem: "Réclamation ",
 				render: () => (
 					<Tab.Pane>
-						<Message messages = {this.state.reclamations}/>
+						<Message deleteMsg={this.deleteMsg} messages={this.state.reclamations} />
 					</Tab.Pane>
 				),
 			}
