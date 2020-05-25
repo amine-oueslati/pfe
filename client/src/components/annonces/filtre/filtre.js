@@ -52,15 +52,6 @@ class Filtre extends Component {
   setrequest = () => {
     let req = { $and: [] };
 
-    // Filtre modele
-    if (this.state.modelesSelected.length !== 0) {
-      let modeleFiltre = [];
-      this.state.modelesSelected.map((modele) => {
-        modeleFiltre.push({ modele });
-      });
-      req.$and.push({ $or: modeleFiltre });
-    }
-
     // Filtre marque
     if (this.state.marquesSelected.length !== 0) {
       let marqueFiltre = [];
@@ -68,6 +59,15 @@ class Filtre extends Component {
         marqueFiltre.push({ marque: marque.brand });
       });
       req.$and.push({ $or: marqueFiltre });
+    }
+
+    // Filtre modele
+    if (this.state.modelesSelected.length !== 0) {
+      let modeleFiltre = [];
+      this.state.modelesSelected.map((modele) => {
+        modeleFiltre.push({ modele });
+      });
+      req.$and.push({ $or: modeleFiltre });
     }
 
     // Filtre carrosserie
@@ -135,6 +135,7 @@ class Filtre extends Component {
     // };
 
     this.props.setFiltre(req);
+
   };
 
   render() {

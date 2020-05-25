@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import Home from "./components/home/home";
 import Annonces from "./components/annonces/annonces";
-import Comparateur from "./components/comparateur/comparateur";
+import Comparateur from "./components/comparateur/responsiveComparateur";
 import Contact from "./components/contact/contact";
 import Login from "./components/login/login";
 import Admin from "./components/admin/admin";

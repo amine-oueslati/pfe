@@ -45,15 +45,25 @@ class AnnoncesMobile extends Component {
   }
 
   setFiltre = (request) => {
-    axios.post(`/api/getAnnonces?order=desc`, request).then((response) => {
-      if (response.data.length < AMOUNT_OF_CARS_PER_LOAD)
-        this.setState({ annonces: response.data, limit: response.data.length });
-      else
+    if (request.$and.length > 0) {
+      axios.post(`/api/getAnnonces?order=desc`, request).then((response) => {
+        if (response.data.length < AMOUNT_OF_CARS_PER_LOAD)
+          this.setState({ annonces: response.data, limit: response.data.length });
+        else
+          this.setState({
+            annonces: response.data,
+            limit: AMOUNT_OF_CARS_PER_LOAD,
+          });
+      });
+    }
+    else {
+      axios.post(`/api/getAnnonces?order=desc`).then((response) => {
         this.setState({
-          annonces: response.data,
           limit: AMOUNT_OF_CARS_PER_LOAD,
+          annonces: response.data,
         });
-    });
+      });
+    }
   };
 
   loadMoreOnClick = () => {
@@ -103,6 +113,19 @@ class AnnoncesMobile extends Component {
         );
       }
       return temp;
+    }
+    else {
+      return (
+        <Segment>
+          <Header textAlign="center" as='h1' icon>
+            <Icon name='remove circle' />
+              Désolé... :(
+            <Header.Subheader>
+              Ces caracteristiques ne correspondent à aucune de nos voitures
+            </Header.Subheader>
+          </Header>
+        </Segment>
+      )
     }
   };
 

@@ -7,7 +7,6 @@ import {
   Grid,
   Segment,
   Container,
-  Loader,
   Image,
   Header,
   Icon,
@@ -28,7 +27,15 @@ class Comparateur extends Component {
   };
 
   componentWillMount = () => {
-    for (let i = 1; i < 5; i++) {
+    let limit = 0;
+    if (this.props.screen === "desktop") {
+      limit = 5
+    }
+    else if (this.props.screen === "mobile") {
+      limit = 3
+    }
+
+    for (let i = 1; i < limit; i++) {
       if (localStorage.getItem(`annonce${i}`)) {
         axios
           .get(`/api/getAnnonce?id=${localStorage.getItem(`annonce${i}`)}`)
@@ -215,44 +222,44 @@ class Comparateur extends Component {
         <MenuContainer active="comparateur">
           {this.state.annonces.length === 0 ? (
             <Segment>
-              <Header  style={{ padding: "4em" }}
+              <Header style={{ padding: "4em" }}
                 as="h1"
                 block
-                textAlign="center"  icon>
+                textAlign="center" icon>
                 <Icon name="balance scale" />
                 Le comparateur est vide
                 <Header.Subheader>
-                Il faut jouter des annonces au comparateur 
+                  Il faut jouter des annonces au comparateur
                 </Header.Subheader>
               </Header>
-              
+
             </Segment>
           ) : (
-            <Segment>
-              <Grid columns={this.state.annonces.length} divided>
-                <Grid.Row>{this.renderTitres()}</Grid.Row>
-                <Grid.Row>{this.renderImages()}</Grid.Row>
-                <Grid.Row>{this.renderMarques()}</Grid.Row>
-                <Grid.Row>{this.renderCaracteristiques()}</Grid.Row>
-                <Grid.Row>{this.renderSuppButtons()}</Grid.Row>
-              </Grid>
-              <Divider horizontal style={{ margin: "2em" }}>
-                Ou Bien
+              <Segment>
+                <Grid columns={this.state.annonces.length} divided>
+                  <Grid.Row>{this.renderTitres()}</Grid.Row>
+                  <Grid.Row>{this.renderImages()}</Grid.Row>
+                  <Grid.Row>{this.renderMarques()}</Grid.Row>
+                  <Grid.Row>{this.renderCaracteristiques()}</Grid.Row>
+                  <Grid.Row>{this.renderSuppButtons()}</Grid.Row>
+                </Grid>
+                <Divider horizontal style={{ margin: "2em" }}>
+                  Ou Bien
               </Divider>
-              <Button
-                color="green"
-                fluid
-                style={{ marginTop: "1em" }}
-                animated="vertical"
-                onClick={this.clearComparateur}
-              >
-                <Button.Content visible>Vider le comparateur</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="delete" />
-                </Button.Content>
-              </Button>
-            </Segment>
-          )}
+                <Button
+                  color="green"
+                  fluid
+                  style={{ marginTop: "1em" }}
+                  animated="vertical"
+                  onClick={this.clearComparateur}
+                >
+                  <Button.Content visible>Vider le comparateur</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="delete" />
+                  </Button.Content>
+                </Button>
+              </Segment>
+            )}
         </MenuContainer>
         <Footer />
       </div>
