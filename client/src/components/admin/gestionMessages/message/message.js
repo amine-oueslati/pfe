@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Header, Container, Button, Icon } from 'semantic-ui-react'
+import { Segment, Header, Container, Button, Icon, Responsive } from 'semantic-ui-react'
 
 
 
@@ -17,7 +17,6 @@ const Message = (props) => {
 
   const deleteMessage = (id) => {
     props.deleteMsg(id)
-    
   }
 
   const renderMsg = () => {
@@ -39,32 +38,51 @@ const Message = (props) => {
           </Container>
 
           <div style={{ marginTop: "1em " }}>
-            <Button.Group fluid>
+            {/* mobile  */}
+            <Responsive {...Responsive.onlyMobile}>
               {message.idAnnonce ?
-                <Button positive animated="fade">
-                  <Button.Content visible>Consulter l'annonce</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name='arrow right' />
-                  </Button.Content>
+                <Button fluid as='a' href={`/annonce/${message.idAnnonce}`} positive >
+                  Consulter l'annonce
                 </Button>
                 :
                 null
               }
-              {message.idAnnonce ?
-                <Button.Or text='ou' />
-                :
-                null
-              }
-              <Button onClick= { ()=> deleteMessage(message._id)} negative animated="fade">
-                <Button.Content visible>Supprimer le message</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='trash' />
-                </Button.Content>
+              <Button fluid onClick={() => deleteMessage(message._id)} negative style={{marginTop: "1em"}}>
+                Supprimer le message
               </Button>
-            </Button.Group>
+            </Responsive>
+
+            {/* Desktop */}
+            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+              <Button.Group fluid>
+                {message.idAnnonce ?
+                  <Button as='a' href={`/annonce/${message.idAnnonce}`} positive animated="fade">
+                    <Button.Content visible>Consulter l'annonce</Button.Content>
+                    <Button.Content hidden>
+                      <Icon name='arrow right' />
+                    </Button.Content>
+                  </Button>
+                  :
+                  null
+                }
+                {message.idAnnonce ?
+                  <Button.Or text='ou' />
+                  :
+                  null
+                }
+                <Button onClick={() => deleteMessage(message._id)} negative animated="fade">
+                  <Button.Content visible>Supprimer le message</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='trash' />
+                  </Button.Content>
+                </Button>
+              </Button.Group>
+
+            </Responsive>
+
           </div>
         </Segment>
-      </Segment>
+      </Segment >
     ))
     return temp
   }

@@ -135,7 +135,6 @@ class AnnonceView extends Component {
       speed: 500,
     };
 
-    console.log(this.state.annonce)
     return (
       <div>
         <MenuContainer active="annonces">

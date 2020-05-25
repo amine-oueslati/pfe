@@ -170,6 +170,26 @@ class Admin extends Component {
                   <GestionUsers />
                 </Accordion.Content>
               </Transition>
+
+              {/* Gestion des Messages */}
+              <Accordion.Title
+                active={this.state.activeIndex === 3}
+                index={3}
+                onClick={this.handleClick}
+              >
+                <Segment color="grey" inverted>
+                  Gestion des messages
+                </Segment>
+              </Accordion.Title>
+              <Transition
+                visible={this.state.activeIndex === 3}
+                animation="scale"
+                duration={500}
+              >
+                <Accordion.Content active={this.state.activeIndex === 3}>
+                  <GestionMessages />
+                </Accordion.Content>
+              </Transition>
             </Accordion>
           </Responsive>
         </MenuContainer>
