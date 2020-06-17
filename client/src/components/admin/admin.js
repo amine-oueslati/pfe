@@ -66,7 +66,6 @@ class Admin extends Component {
 
   handelLogout = () => {
     axios.get("/api/logout").then((response) => {
-      console.log(response.data);
       if (response.data === "OK") {
         document.cookie =
           "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

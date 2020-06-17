@@ -27,7 +27,7 @@ class Home extends Component {
         </Segment>
         
         {/* segment Contact*/}
-        <Segment vertical>
+        <Segment style={{ paddingBottom: "4em"}} vertical>
           <Contact />
         </Segment>
 

@@ -22,10 +22,10 @@ class Login extends Component {
   };
 
   handelEmailChange = event => {
-    this.setState({ email: event.target.value });
+    this.setState({ email: event.target.value, error: undefined });
   };
   handelPasswordChange = event => {
-    this.setState({ password: event.target.value });
+    this.setState({ password: event.target.value, error: undefined });
   };
   submitForm = e => {
     e.preventDefault();
@@ -62,7 +62,6 @@ class Login extends Component {
               style={{ marginTop: "1em", marginBottom: "2em" }}
             >
               <Header.Content style={{ marginBottom: "1em" }}>
-                {" "}
                 page réservé à l'administrateur
               </Header.Content>
               <Icon name="users" circular />
@@ -97,7 +96,7 @@ class Login extends Component {
                 <Message
                   warning
                   header="Verifier les coordonnées!"
-                  list={[this.state.error]}
+                  content= {this.state.error === "Wrong password"? "Mot de passe incorrect" : "Email incorrect"}
                 />
               ) : null}
 

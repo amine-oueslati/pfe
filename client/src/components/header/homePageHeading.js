@@ -27,6 +27,8 @@ const HomepageHeading = ({ mobile }) => (
       }}
     />
     <Button
+      as="a"
+      href="/annonces"
       primary
       size="huge"
       style={{

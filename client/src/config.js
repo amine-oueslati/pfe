@@ -1,22 +1,22 @@
 const LOCAUX = [
   {
     id: "1",
-    titre: "aaa",
-    adresse: "aaaaaaaaaaaaaaaaaaaaaa",
+    titre: "Tunis",
+    adresse: "bureau 1",
     latitude: 36.848788,
     longitude: 10.263999,
   },
   {
     id: "2",
-    titre: "bbb",
-    adresse: "bbbbbbbbbbbbbbbbbbbbbbbb",
+    titre: "Sousse",
+    adresse: "bureau 2",
     latitude: 35.8293,
     longitude: 10.64063,
   },
   {
     id: "3",
-    titre: "ccc",
-    adresse: "ccccccccccccccccc",
+    titre: "Beja",
+    adresse: "bureau 3",
     latitude: 36.72589,
     longitude: 9.18734,
   },

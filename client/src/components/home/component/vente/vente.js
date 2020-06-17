@@ -24,7 +24,7 @@ const Vente = () => {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign="center">
-          <Button size="huge">Chercher une voiture</Button>
+          <Button as="a" href="/annonces" size="huge">Chercher une voiture</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
